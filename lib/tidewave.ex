@@ -92,7 +92,7 @@ defmodule Tidewave do
 
     for policy_directive <- policy_directives,
         policy_directive = String.trim(policy_directive),
-        [policy, directives] = String.split(policy_directive, " ", parts: 2),
+        [policy, directives] <- [String.split(policy_directive, " ", parts: 2)],
         policy != "frame-ancestors" do
       if policy == "script-src" do
         case :binary.match(directives, "'unsafe-eval'") do
